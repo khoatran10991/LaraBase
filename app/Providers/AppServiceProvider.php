@@ -29,7 +29,11 @@ class AppServiceProvider extends ServiceProvider
         if (config('env.APP_DEBUG') && config('env.APP_ENV') !== 'production') {
             DB::listen(function ($query) {
                 $request = app('request');
-                $sql = str_replace_array('?',$query->bindings,$query->sql);
+                $bindings = $query->bindings;
+                $bindings = array_map(function ($item){
+                    return "'".$item."'";
+                }, $bindings);
+                $sql = str_replace_array('?',$bindings,$query->sql);
                 Log::stack(['query'])->info('[QueryLog] '.$sql, [
                     'requestUri' => $request->path(),
                     'Time'       => $query->time,
