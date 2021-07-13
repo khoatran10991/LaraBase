@@ -3607,7 +3607,7 @@ function listenArrayEvents(array, listener) {
 
 /**
  * Removes the given array event listener and cleanup extra attached properties (such as
- * the _chartjs stub and overridden methods) if array doesn't have any more listeners.
+ * the _chartjs stubs and overridden methods) if array doesn't have any more listeners.
  */
 function unlistenArrayEvents(array, listener) {
 	var stub = array._chartjs;
