@@ -23,32 +23,28 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Phân quyền
+        Cài đặt
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item {{ activeClass('#')  }}">
         <a class="nav-link collapsed" href="<?php echo '#';?>">
             <i class="fa fa-fw fa-users"></i>
-            <span>Nhân viên</span>
+            <span>Thành viên</span>
         </a>
     </li>
     <li class="nav-item {{ activeClass('#')  }}">
-        <a class="nav-link collapsed" href="<?php echo '#';?>">
-            <i class="fa fa-fw fa-plug"></i>
-            <span>Nhóm phân quyền</span>
-        </a>
-    </li>
-    <li class="nav-item {{ activeClass('#')  }}">
-        <a class="nav-link collapsed" href="<?php echo '#';?>">
-            <i class="fa fa-fw fa-toggle-on"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePermissions" aria-expanded="true"
+           aria-controls="collapsePermissions">
+            <i class="fas fa-fw fa-dungeon"></i>
             <span>Phân quyền</span>
         </a>
-    </li>
-    <li class="nav-item {{ activeClass('#')  }}">
-        <a class="nav-link collapsed" href="<?php echo '#';?>">
-            <i class="fa fa-fw fa-plus-circle"></i>
-            <span>Quản lý hệ thống</span>
-        </a>
+        <div id="collapsePermissions" class="collapse" aria-labelledby="headingPages"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="#"><i class="fa fa-fw fa-plus-circle"></i> Nhóm quyền</a>
+                <a class="collapse-item" href="#"><i class="fa fa-fw fa-toggle-on"></i> Quyền</a>
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->
