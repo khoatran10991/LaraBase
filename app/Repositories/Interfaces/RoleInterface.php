@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-interface RoleInterface
+interface RoleInterface extends ModelBaseInterface
 {
     //Implement Repository
 }

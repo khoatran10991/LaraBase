@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fa fa-shield"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Affiliate<sup>Marketing</sup></div>
+        <div class="sidebar-brand-text mx-3">{{  __('layout.app') }}</div>
     </a>
 
     <!-- Divider -->
@@ -13,9 +13,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="<?php echo '#';?>">
+        <a class="nav-link" href="{{ route('dashboard.index') }}">
             <i class="fa fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>{{ __('layout.dashboard') }}</span></a>
     </li>
 
     <!-- Divider -->
@@ -23,26 +23,26 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Cài đặt
+        {{ __('layout.setting') }}
     </div>
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ activeClass('#')  }}">
-        <a class="nav-link collapsed" href="<?php echo '#';?>">
+    <li class="nav-item {{ activeClass(route('user.index'))  }}">
+        <a class="nav-link collapsed" href="{{  route('user.index') }}">
             <i class="fa fa-fw fa-users"></i>
-            <span>Thành viên</span>
+            <span>{{ __('layout.user') }}</span>
         </a>
     </li>
     <li class="nav-item {{ activeClass('#')  }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePermissions" aria-expanded="true"
            aria-controls="collapsePermissions">
             <i class="fas fa-fw fa-dungeon"></i>
-            <span>Phân quyền</span>
+            <span>{{ __('layout.authorize') }}</span>
         </a>
         <div id="collapsePermissions" class="collapse" aria-labelledby="headingPages"
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#"><i class="fa fa-fw fa-plus-circle"></i> Nhóm quyền</a>
-                <a class="collapse-item" href="#"><i class="fa fa-fw fa-toggle-on"></i> Quyền</a>
+                <a class="collapse-item" href="#"><i class="fa fa-fw fa-plus-circle"></i> {{ __('layout.role') }}</a>
+                <a class="collapse-item" href="#"><i class="fa fa-fw fa-toggle-on"></i> {{ __('layout.permission') }}</a>
             </div>
         </div>
     </li>

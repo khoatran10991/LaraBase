@@ -2,7 +2,7 @@
 
 namespace DummyNamespace;
 
-interface DummyClass
+interface DummyClass extends ModelBaseInterface
 {
     //Implement Repository
 }

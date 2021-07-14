@@ -3,7 +3,7 @@
 <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown no-arrow mx-1 mt-2">
-            <a href="{{ route('auth.logout') }}" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            <a href="{{ route('auth.logout') }}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> {{  __('layout.logout') }}</a>
         </li>
 
     </ul>

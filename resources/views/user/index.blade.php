@@ -1,12 +1,12 @@
-@extends('packages/permission::layouts.master')
+@extends('layouts.layout')
 @section('title')
     Quản lý thành viên
 @endsection
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Quản lý hệ thống</h1>
-        <a  data-toggle="modal" data-target="#ajaxModal" href="{{ route('admin.manager.add')  }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus fa-sm text-white-50"></i> Thêm người quản lý</a>
+        <h1 class="h3 mb-0 text-gray-800">Quản lý thành viên</h1>
+        <a  data-toggle="modal" data-target="#ajaxModal" href="{{ 'user.add'  }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-plus fa-sm text-white-50"></i> Thêm thành viên</a>
     </div>
     <!-- Content Row -->
     <div class="row">
@@ -20,31 +20,31 @@
                         <table class="table">
                             <thead class="thead-primary">
                             <tr>
-                                <th scope="col">ManagerId</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Tên truy cập</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Nhóm quyền</th>
+                                <th scope="col">Loại thành viên</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col" class="action-table">Thao tác</th>
                             </tr>
                             </thead>
                             <tbody>
-                                @if(isset($managers) && !empty($managers))
-                                    @foreach($managers as $manager)
+                                @if(isset($users) && !empty($users))
+                                    @foreach($users as $user)
                                         <tr>
-                                            <td>{{ $manager->ManagerId }}</td>
-                                            <td><a data-toggle="modal" data-target="#ajaxModal" href="{{ route('admin.manager.edit',['managerId' => $manager->ManagerId])  }}" >{{ $manager->UserName  }}</td>
-                                            <td><a data-toggle="modal" data-target="#ajaxModal" href="{{ route('admin.manager.edit',['managerId' => $manager->ManagerId])  }}" >{{ $manager->Email  }}</td>
-                                            <td>{{ $manager->Scope }}</td>
+                                            <td>{{ $user->UserId }}</td>
+                                            <td><a data-toggle="modal" data-target="#ajaxModal" href="{{ route('user.edit',['userId' => $user->userId])  }}" >{{ $user->UserName  }}</td>
+                                            <td><a data-toggle="modal" data-target="#ajaxModal" href="{{ route('user.edit',['userId' => $user->userId])  }}" >{{ $user->Email  }}</td>
+                                            <td>{{ $user->Scope }}</td>
                                             <td>
-                                                @if($manager->IsActive)
+                                                @if($user->IsActive)
                                                     <a class="btn btn-success btn-xs" href="#" role="button">Đang hoạt động</a>
                                                 @else
                                                     <a class="btn btn-secondary btn-xs" href="#" role="button">Đã khóa</a>
                                                 @endif
                                             </td>
                                             <td>
-                                                <a data-toggle="modal" data-target="#ajaxModal" class="btn btn-primary btn-sm" href="{{ route('admin.manager.edit',['managerId' => $manager->ManagerId])  }}" role="button">Chỉnh sửa</a>
+                                                <a data-toggle="modal" data-target="#ajaxModal" class="btn btn-primary btn-sm" href="{{ route('user.edit',['userId' => $user->userId])  }}" role="button">Chỉnh sửa</a>
                                             </td>
                                         </tr>
                                     @endforeach

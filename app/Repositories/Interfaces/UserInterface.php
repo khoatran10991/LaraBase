@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interfaces;
 
-interface UserInterface
+interface UserInterface extends ModelBaseInterface
 {
     //Implement Repository
 }
