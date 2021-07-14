@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Repositories\Abstracts\EloquentRepository;
+
+class DummyClass extends EloquentRepository
+{
+   /**
+    * @return string
+    */
+   protected function getModel(): string
+   	{
+   		//Required model
+   	}
+}

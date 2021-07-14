@@ -3,8 +3,14 @@
 namespace App\Repositories\Abstracts;
 
 use App\Repositories\Interfaces\ModelBaseInterface;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class EloquentRepository
+ * @package App\Repositories\Abstracts
+ */
 abstract class EloquentRepository implements ModelBaseInterface
 {
 	/**
@@ -34,14 +40,14 @@ abstract class EloquentRepository implements ModelBaseInterface
 		$this->_model = app()->make($this->getModel());
 	}
 
-	/**
-	 * Get All
-	 * @return \Illuminate\Database\Eloquent\Collection|static[]
-	 */
-	public function all($columns = ['*'])
+    /**
+     * @param  string[]  $columns
+     * @return Collection|Model[]
+     */
+	public function all(array $columns = ['*'])
 	{
 
-		return $this->_model::all($columns);
+		return $this->_model->all($columns);
 	}
 
 	/**
@@ -53,8 +59,12 @@ abstract class EloquentRepository implements ModelBaseInterface
 	 */
 	public function find($id)
 	{
-		return $this->_model::find($id) ?? false;
+		return $this->_model->find($id) ?? false;
 	}
+
+    public function paginate(int $perPage = 10){
+        return $this->_model->paginate($perPage);
+    }
 
 	/**
 	 * Create
@@ -79,7 +89,7 @@ abstract class EloquentRepository implements ModelBaseInterface
 	 *
 	 * @return bool|mixed
 	 */
-	public function update($id, array $attributes)
+	public function update($id, array $attributes): ?bool
 	{
 		$item = $this->_model->find($id);
 		if ($item) {
@@ -98,7 +108,7 @@ abstract class EloquentRepository implements ModelBaseInterface
 	 *
 	 * @return bool
 	 */
-	public function delete($id)
+	public function delete($id): bool
 	{
 		$result = $this->find($id);
 		if ($result) {
@@ -114,7 +124,7 @@ abstract class EloquentRepository implements ModelBaseInterface
 	 * @param $id
 	 * @return bool
 	 */
-	public function softDelete($id)
+	public function softDelete($id): bool
 	{
 		if ($item = $this->find($id)) {
 			if ($this->_model->isFillable('UpdatedBy')) {
@@ -138,24 +148,27 @@ abstract class EloquentRepository implements ModelBaseInterface
 		if ($this->_model->isFillable('CreatedBy')) {
 			$attributes['CreatedBy'] = Auth::id();
 		}
-		if ($this->_model->isFillable('LastUpdatedBy')) {
-			$attributes['LastUpdatedBy'] = Auth::id();
+		if ($this->_model->isFillable('UpdatedBy')) {
+			$attributes['UpdatedBy'] = Auth::id();
 		}
 		return $this->_model->insertOrIgnore($attributes);
 	}
+
+    /**
+     * Update or insert
+     * @param  array  $condition
+     * @param  array  $attributes
+     * @return mixed
+     */
 
 	public function updateOrInsert(array $condition,array $attributes)
 	{
 		if ($this->_model->isFillable('CreatedBy')) {
 			$attributes['CreatedBy'] = Auth::id();
 		}
-		if ($this->_model->isFillable('LastUpdatedBy')) {
-			$attributes['LastUpdatedBy'] = Auth::id();
+		if ($this->_model->isFillable('UpdatedBy')) {
+			$attributes['UpdatedBy'] = Auth::id();
 		}
-//		try {
-//		}catch (\Exception $e){
-//			dd($e->getMessage());
-//		}
 		$res = $this->_model->updateOrInsert($condition,$attributes);
 		return $res->first();
 	}

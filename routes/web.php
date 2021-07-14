@@ -25,6 +25,17 @@ Route::group(['namespace' => 'App\Http\Controllers', 'middleware' => ['web','aut
         Route::get('/','DashboardController@index')->name('dashboard.index');
     });
 
+    /**
+     * User Route: all, add, edit
+     */
+    Route::group(['namespace' => 'User','prefix' => 'user'], function (){
+        Route::get('/','UserController@index')->name('user.index');
+        Route::get('/add','UserController@add')->name('user.add');
+        Route::post('/add','UserController@addProcess')->name('user.addProcess');
+        Route::get('/edit','UserController@edit')->name('user.edit');
+        Route::put('/edit','UserController@editProcess')->name('user.editProcess');
+    });
+
 });
 
 /**

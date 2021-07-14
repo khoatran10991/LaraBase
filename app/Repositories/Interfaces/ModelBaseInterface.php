@@ -17,6 +17,13 @@ interface ModelBaseInterface
 	 */
 	public function find($id);
 
+    /**
+     * Get item pagination
+     * @param  int  $perPage
+     * @return mixed
+     */
+    public function paginate(int $perPage = 10);
+
 	/**
 	 * Create
 	 * @param array $attributes
