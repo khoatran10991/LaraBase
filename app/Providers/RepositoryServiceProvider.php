@@ -8,6 +8,8 @@ use App\Repositories\Interfaces\UserInterface;
 use App\Repositories\PermissionRepository;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
+use App\Services\Interfaces\UserServiceInterface;
+use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -21,8 +23,9 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         //Binding Interface - Repository
         $this->app->bind(UserInterface::class,UserRepository::class);
-        $this->app->bind(RoleInterface::class,RoleRepository::class);
-        $this->app->bind(PermissionInterface::class, PermissionRepository::class);
+
+        //Binding Interface - Service
+        $this->app->bind(UserServiceInterface::class, UserService::class);
     }
 
     /**

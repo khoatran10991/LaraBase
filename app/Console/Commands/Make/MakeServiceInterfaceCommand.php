@@ -4,21 +4,21 @@ namespace App\Console\Commands\Make;
 
 use Illuminate\Console\GeneratorCommand;
 
-class MakeRepositoryInterfaceCommand extends GeneratorCommand
+class MakeServiceInterfaceCommand extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:repository_interface {name : The interface implement repository that you want to create}';
+    protected $signature = 'make:service_interface {name : The interface implement service that you want to create}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create interface implement repository';
+    protected $description = 'Create interface implement service';
 
     /**
      * @var string
@@ -31,7 +31,7 @@ class MakeRepositoryInterfaceCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace . '\Repositories\Interfaces';
+        return $rootNamespace . '\Services\Interfaces';
     }
 
     /**
@@ -39,6 +39,6 @@ class MakeRepositoryInterfaceCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../stubs/Repositories/interface.stub';
+        return __DIR__.'/../stubs/Services/interface.stub';
     }
 }
