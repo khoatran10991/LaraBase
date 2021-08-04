@@ -34,14 +34,14 @@
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                         {{ Form::checkbox('remember', '1', request('remember'),['class' => 'custom-control-input','id'=>'customCheck','type'=>'checkbox'])  }}
-                                        <label class="custom-control-label" for="customCheck">{{ __('layout.rememberLogin') }}</label>
+                                        <label class="custom-control-label" for="customCheck">{{ __('layout.remember_login') }}</label>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">{{ __('layout.login') }}</button>
                                 {!! Form::close() !!}
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="#">{{ __('layout.forgotPassword') }}?</a>
+                                    <a class="small" href="#">{{ __('layout.forgot_password') }}?</a>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,8 @@ namespace App\Console;
 
 use App\Console\Commands\Make\MakeRepositoryCommand;
 use App\Console\Commands\Make\MakeRepositoryInterfaceCommand;
+use App\Console\Commands\Make\MakeServiceCommand;
+use App\Console\Commands\Make\MakeServiceInterfaceCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +18,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         MakeRepositoryCommand::class,
-        MakeRepositoryInterfaceCommand::class
+        MakeRepositoryInterfaceCommand::class,
+        MakeServiceCommand::class,
+        MakeServiceInterfaceCommand::class
     ];
 
     /**

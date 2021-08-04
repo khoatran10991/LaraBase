@@ -6,26 +6,26 @@ use Illuminate\Console\GeneratorCommand;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 
-class MakeRepositoryCommand extends GeneratorCommand
+class MakeServiceCommand extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:repository {name : The repository class that you want to create}';
+    protected $signature = 'make:service {name : The service class that you want to create}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new repository class';
+    protected $description = 'Create a new service class';
 
     /**
      * @var string
      */
-    protected $type = 'Repository';
+    protected $type = 'Service';
 
     /**
      * Execute the console command.
@@ -46,7 +46,7 @@ class MakeRepositoryCommand extends GeneratorCommand
      */
     protected function getDefaultNamespace($rootNamespace): string
     {
-        return $rootNamespace . '\Repositories';
+        return $rootNamespace . '\Services';
     }
 
     /**
@@ -54,7 +54,7 @@ class MakeRepositoryCommand extends GeneratorCommand
      */
     protected function getStub(): string
     {
-        return __DIR__.'/../stubs/Repositories/repository.stub';
+        return __DIR__.'/../stubs/Services/service.stub';
     }
 
     /**
@@ -68,10 +68,10 @@ class MakeRepositoryCommand extends GeneratorCommand
     {
         parent::replaceNamespace($stub, $name);
 
-        $classNameRepo = $this->getNameRepository();
+        $classNameService = $this->getNameService();
 
-        $stub = str_replace(['DummyImpl', '{{ ImplInterface }}', '{{ImplInterface}}'], $classNameRepo, $stub);
-        $stub = str_replace(['dummyImpl', '{{ impl }}', '{{impl}}'], lcfirst($classNameRepo), $stub);
+        $stub = str_replace(['DummyImpl', '{{ ImplInterface }}', '{{ImplInterface}}'], $classNameService, $stub);
+        $stub = str_replace(['dummyImpl', '{{ impl }}', '{{impl}}'], lcfirst($classNameService), $stub);
 
         return $this;
     }
@@ -83,19 +83,19 @@ class MakeRepositoryCommand extends GeneratorCommand
      */
     protected function createInterface()
     {
-        $interface = $this->getNameRepository();
+        $classNameService = $this->argument('name');
 
 
-        $this->call('make:repository_interface', [
-            'name' => "{$interface}Interface",
+        $this->call('make:service_interface', [
+            'name' => "{$classNameService}Interface",
         ]);
     }
 
     /**
      * @return string
      */
-    private function getNameRepository(): string
+    private function getNameService(): string
     {
-        return Str::studly(Str::replaceFirst('Repository','',$this->argument('name')));
+        return Str::studly(Str::replaceFirst('Service','',$this->argument('name')));
     }
 }

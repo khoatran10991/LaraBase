@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -28,6 +29,16 @@ class UserRequest extends FormRequest
             'Email' => 'required|min:5|max:250|email:rfc|unique:User,Email',
             'Password' => 'required|min:5|max:250',
             'RePassword' => 'required|same:Password'
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'UserName' => __('user.user_name'),
+            'Email' => __('user.email'),
+            'Password' => __('user.password'),
+            'RePassword' => __('user.confirm_password')
         ];
     }
 }
